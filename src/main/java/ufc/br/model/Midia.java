@@ -9,13 +9,13 @@ public class Midia {
     @GeneratedValue
     private int id;
     private String pathVideo;
-    private String pathAudio;
+    private String title;
 
     public Midia(){}
 
-    public Midia(String pathVideo, String pathAudio){
+    public Midia(String pathVideo, String title){
         this.pathVideo = pathVideo;
-        this.pathAudio = pathAudio;
+        this.title = title;
     }
 
     public int getId() {
@@ -34,11 +34,11 @@ public class Midia {
         this.pathVideo = pathVideo;
     }
 
-    public String getPathAudio() {
-        return pathAudio;
+    public String getPathTitle() {
+        return title;
     }
 
-    public void setPathAudio(String pathAudio) {
-        this.pathAudio = pathAudio;
+    public void setPathTitle(String pathAudio) {
+        this.title = title;
     }
 }
