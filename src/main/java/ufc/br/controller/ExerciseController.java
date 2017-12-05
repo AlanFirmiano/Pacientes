@@ -45,6 +45,11 @@ public class ExerciseController {
 		return service.get(id);
 	}
 
+	@GetMapping("/{title}")
+	public ResponseEntity<Exercise> get(@PathVariable String title){
+		return service.get(title);
+	}
+
 	@GetMapping
 	public ResponseEntity<List<Exercise>> get(){
 		return service.get();

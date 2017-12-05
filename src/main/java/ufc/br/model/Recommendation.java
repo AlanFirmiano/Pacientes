@@ -1,17 +1,18 @@
 package ufc.br.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 public class Recommendation {
     @Id
     @GeneratedValue
     private int id;
-    private String message;
+    @ManyToMany(cascade={CascadeType.ALL})
+    private List<Serie> serie;
 
-    public Recommendation(String message){
-        this.message = message;
+    public Recommendation(){
+
     }
 
     public int getId() {
@@ -22,12 +23,12 @@ public class Recommendation {
         this.id = id;
     }
 
-    public String getMessage() {
-        return message;
+    public List<Serie> getSerie() {
+        return serie;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setSerie(List<Serie> serie) {
+        this.serie = serie;
     }
-    
+
 }

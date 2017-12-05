@@ -10,13 +10,17 @@ import org.springframework.stereotype.Service;
 
 
 import ufc.br.model.Patient;
+import ufc.br.model.Responsible;
 import ufc.br.repository.PatientRepository;
+import ufc.br.repository.ResponsibleRepository;
 
 @Service
 public class PatientService {
 	@Autowired
 	PatientRepository repository;
-	
+	@Autowired
+	ResponsibleRepository responsible;
+
 	private String gerarMatricula(){
 		Date data = new Date(); 
 		return "20"+(data.getYear()-100)+(data.getMonth()+1)+data.getDate()+data.getHours()+data.getMinutes()+data.getSeconds();
@@ -25,6 +29,7 @@ public class PatientService {
 	public ResponseEntity<String> save(Patient patient){
 		if(null == repository.findByName(patient.getName())){
 			patient.setRegistration(gerarMatricula());
+			patient.setResponsible(responsible.findOne(1));
 			repository.save(patient);
 			return new ResponseEntity<String>("Patient : "+ patient.getName()+" cadastrado!", HttpStatus.OK);
 		}else{

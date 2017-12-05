@@ -1,9 +1,6 @@
 package ufc.br.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -23,11 +20,11 @@ public class Patient {
 	private String phoneParent;
 	@NotNull
 	private int progress;
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL, CascadeType.MERGE})
 	private Responsible responsible;
 
 	public Patient(){
-		this.progress = 1;
+
 	}
 	
 	public Patient(String registration, String name, String phone, String parent, String phoneParent){
@@ -37,6 +34,7 @@ public class Patient {
 		this.parent = parent;
 		this.phoneParent = phoneParent;
 		this.progress = 1;
+
 	}
 
 	public Integer getId() {

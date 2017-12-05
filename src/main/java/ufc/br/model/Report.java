@@ -9,10 +9,8 @@ public class Report {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@OneToOne
-	private Patient patient;
-	@OneToOne
-	private Grasp grasp;
+	@OneToOne(cascade={CascadeType.MERGE})
+	private Permition permition;
 	private String status;
 	private int time;
 	private int effortLevel;
@@ -20,13 +18,9 @@ public class Report {
 	private String message;
 	private int sets;
 	private int repetitions;
+
 	public Report(){
 
-	}
-	
-	public Report(Patient patient, Grasp grasp){
-		this.patient = patient;
-		this.grasp = grasp;
 	}
 
 	public Integer getId() {
@@ -37,20 +31,10 @@ public class Report {
 		this.id = id;
 	}
 
-	public Patient getPatient() {
-		return patient;
-	}
+	public Permition getPermition() { return permition; }
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
-
-	public Grasp getGrasp() {
-		return grasp;
-	}
-
-	public void setGrasp(Grasp grasp) {
-		this.grasp = grasp;
+	public void setPermition(Permition permition) {
+		this.permition = permition;
 	}
 
 	public String getStatus() { return status; }

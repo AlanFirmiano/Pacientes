@@ -3,21 +3,22 @@ package ufc.br.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ufc.br.model.Midia;
-import ufc.br.service.MidiaService;
+import ufc.br.model.Serie;
+import ufc.br.service.SerieService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/midia s")
+@RequestMapping("/series")
 @CrossOrigin(origins = "*")
-public class MidiaController {
+public class SerieController {
+
     @Autowired
-    private MidiaService service;
+    private SerieService service;
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody Midia midia){
-        return service.save(midia);
+    public ResponseEntity<String> save(@RequestBody Serie serie){
+        return service.save(serie);
     }
 
     @DeleteMapping("/{id}")
@@ -26,17 +27,17 @@ public class MidiaController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody Midia midia){
-        return service.update(midia);
+    public ResponseEntity<String> update(@RequestBody Serie serie){
+        return service.update(serie);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Midia> get(@PathVariable Integer id){
+    public ResponseEntity<Serie> get(@PathVariable Integer id){
         return service.get(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<Midia>> get(){
+    public ResponseEntity<List<Serie>> get(){
         return service.get();
     }
 }

@@ -41,9 +41,9 @@ public class ReportController {
 		return service.update(report);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("byPatient/{id}")
 	public ResponseEntity<List<Report>> get(@PathVariable Integer id){
-		return service.getByPatient(id);
+		return service.getByPermition(id);
 	}
 
 	@GetMapping

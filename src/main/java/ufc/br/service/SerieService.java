@@ -4,19 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import ufc.br.model.Midia;
-import ufc.br.repository.MidiaRepository;
+import ufc.br.model.Serie;
+import ufc.br.repository.SerieRepository;
 
 import java.util.List;
 
 @Service
-public class MidiaService {
-
+public class SerieService {
     @Autowired
-    MidiaRepository repository;
+    SerieRepository repository;
 
-    public ResponseEntity<String> save(Midia midia){
-        repository.save(midia);
+    public ResponseEntity<String> save(Serie serie){
+        repository.save(serie);
         return new ResponseEntity<String>("sucesso", HttpStatus.OK);
     }
 
@@ -25,16 +24,15 @@ public class MidiaService {
         return new ResponseEntity<String>("sucesso", HttpStatus.OK);
     }
 
-    public ResponseEntity<String> update(Midia midia){
-        repository.save(midia);
+    public ResponseEntity<String> update(Serie serie){
+        repository.save(serie);
         return new ResponseEntity<String>("sucesso", HttpStatus.OK);
     }
 
-    public ResponseEntity<Midia> get(Integer id){
-        return new ResponseEntity<Midia>(this.repository.findOne(id), HttpStatus.OK);
+    public ResponseEntity<Serie> get(Integer id){
+        return new ResponseEntity<Serie>(this.repository.findOne(id), HttpStatus.OK);
     }
-
-    public ResponseEntity<List<Midia>> get(){
-        return new ResponseEntity<List<Midia>>(this.repository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Serie>> get(){
+        return new ResponseEntity<List<Serie>>(this.repository.findAll(), HttpStatus.OK);
     }
 }

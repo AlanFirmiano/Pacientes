@@ -8,16 +8,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ufc.br.model.Exercise;
+import ufc.br.model.Grasp;
+import ufc.br.model.Object;
 import ufc.br.repository.ExerciseRepository;
+import ufc.br.repository.GraspRepository;
+import ufc.br.repository.MidiaRepository;
+import ufc.br.repository.ObjectRepository;
 
 @Service
 public class ExerciseService {
 	@Autowired
 	ExerciseRepository repository;
-
+	@Autowired
+	GraspService graspSer;
+	@Autowired
+	GraspRepository graspRepo;
+	@Autowired
+	MidiaRepository mRepo;
+	@Autowired
+	ObjectRepository oRepo;
 	public ResponseEntity<String> save(Exercise exercise){
 		if(null==repository.findByTitle(exercise.getTitle())){
 			if(!exercise.getTitle().equals("")) {
+				mRepo.save(exercise.getMidia());
+				oRepo.save(exercise.getObjects());
 				repository.save(exercise);
 				return new ResponseEntity<String>("Exercicio : " + exercise.getTitle() + " cadastrado!", HttpStatus.CREATED);
 			}else{
@@ -29,6 +43,11 @@ public class ExerciseService {
 	}
 
 	public ResponseEntity<String> delete(Integer id){
+		ResponseEntity<List<Grasp>> lista = graspSer.getByExercise(repository.findById(id));
+		for(Grasp aux: lista.getBody()) {
+
+			graspRepo.delete(aux.getId());
+		}
 		repository.delete(id);
 		return new ResponseEntity<String>("Exercicio removido!", HttpStatus.OK);
 	}
@@ -50,6 +69,10 @@ public class ExerciseService {
 
 	public ResponseEntity<Exercise> get(Integer id){
 		return new ResponseEntity<Exercise>(this.repository.findOne(id), HttpStatus.OK);
+	}
+
+	public ResponseEntity<Exercise> get(String title){
+		return new ResponseEntity<Exercise>(this.repository.findByTitle(title), HttpStatus.OK);
 	}
 
 	public ResponseEntity<List<Exercise>> get(){

@@ -8,12 +8,14 @@ public class Midia {
     @Id
     @GeneratedValue
     private int id;
-    private String title;
-    private String path;
+    private String pathVideo;
+    private String pathAudio;
 
-    public Midia(String title, String path){
-        this.title = title;
-        this.path = path;
+    public Midia(){}
+
+    public Midia(String pathVideo, String pathAudio){
+        this.pathVideo = pathVideo;
+        this.pathAudio = pathAudio;
     }
 
     public int getId() {
@@ -24,19 +26,19 @@ public class Midia {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPathVideo() {
+        return pathVideo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPathVideo(String pathVideo) {
+        this.pathVideo = pathVideo;
     }
 
-    public String getPath() {
-        return path;
+    public String getPathAudio() {
+        return pathAudio;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setPathAudio(String pathAudio) {
+        this.pathAudio = pathAudio;
     }
 }

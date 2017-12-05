@@ -1,7 +1,10 @@
 package ufc.br.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Exercise {
@@ -11,18 +14,21 @@ public class Exercise {
 	@NotNull
 	private String title;
 	private String description;
-	private boolean isUnlocked = false;
+	@OneToOne(cascade={CascadeType.ALL})
+	private Midia midia;
+	@Autowired
+	@ManyToMany(cascade={CascadeType.ALL})
+	private List<Object> objects;
 
+	public Exercise(){
+
+	}
 	public Exercise(String title){
 		this.title = title;
 	}
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getTitle() {
@@ -41,8 +47,24 @@ public class Exercise {
 		this.description = description;
 	}
 
-	public boolean isUnlocked() { return isUnlocked; }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public void setUnlocked(boolean unlocked) { isUnlocked = unlocked; }
+	public Midia getMidia() {
+		return midia;
+	}
+
+	public void setMidia(Midia midia) {
+		this.midia = midia;
+	}
+
+	public List<Object> getObjects() {
+		return objects;
+	}
+
+	public void setObjects(List<Object> objects) {
+		this.objects = objects;
+	}
 
 }

@@ -6,4 +6,6 @@ import ufc.br.model.Level;
 @Repository
 public interface LevelRepository extends JpaRepository<Level, Integer>{
     Level findById(Integer id);
+
+    Level findByLevel(Integer level);
 }

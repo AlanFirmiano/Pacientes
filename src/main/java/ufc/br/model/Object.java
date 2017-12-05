@@ -3,19 +3,20 @@ package ufc.br.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
+
 @Entity
-public class Level {
+public class Object {
     @Id
     @GeneratedValue
     private int id;
-    private int level;
+    private String name;
 
-    public Level(){
+    public Object(){
 
     }
-    public Level(int level){
-        this.level = level;
+
+    public Object(String name){
+        this.name = name;
     }
 
     public int getId() {
@@ -26,11 +27,11 @@ public class Level {
         this.id = id;
     }
 
-    public int getLevel() {
-        return level;
+    public String getName() {
+        return name;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setName(String name) {
+        this.name = name;
     }
 }

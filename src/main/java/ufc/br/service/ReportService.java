@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ufc.br.model.Patient;
+import ufc.br.model.Permition;
 import ufc.br.model.Report;
+import ufc.br.repository.PermitionRepository;
 import ufc.br.repository.ReportRepository;
 import ufc.br.repository.PatientRepository;
 
@@ -37,9 +39,9 @@ public class ReportService {
 		return new ResponseEntity<Report>(this.repository.findOne(id), HttpStatus.OK);
 	}
 
-	public ResponseEntity<List<Report>> getByPatient(Integer id){
+	public ResponseEntity<List<Report>> getByPermition(Integer id){
 		Patient patient = this.prep.findOne(id);
-		return new ResponseEntity<List<Report>>(this.repository.findByPatient(patient), HttpStatus.OK);
+		return new ResponseEntity<List<Report>>(this.repository.findByPermition_Patient(patient), HttpStatus.OK);
 	}
 	
 	public ResponseEntity<List<Report>> get(){
