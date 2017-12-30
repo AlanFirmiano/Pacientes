@@ -46,6 +46,11 @@ public class ReportController {
 		return service.getByPermition(id);
 	}
 
+	@GetMapping("byExercise/{id}")
+	public ResponseEntity<Double> getByExercise(@PathVariable Integer id){
+		return service.getByExercise(id);
+	}
+
 	@GetMapping
 	public ResponseEntity<List<Report>> get(){
 		return service.get();
